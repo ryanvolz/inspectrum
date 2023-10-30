@@ -292,8 +292,8 @@ void SpectrogramPlot::getLine(float *dest, size_t sample)
         // past the beginning of the inputSource (if we remove the
         // std::max(·, 0), then an ugly red bar appears at the beginning
         // of the spectrogram with large zooms and FFT sizes).
-        const auto first_sample = std::max(static_cast<ssize_t>(sample) - fftSize / 2,
-                        static_cast<ssize_t>(0));
+        const auto first_sample = std::max(static_cast<ptrdiff_t>(sample) - fftSize / 2,
+                        static_cast<ptrdiff_t>(0));
         auto buffer = inputSource->getSamples(first_sample, fftSize);
         if (buffer == nullptr) {
             auto neg_infinity = -1 * std::numeric_limits<float>::infinity();
